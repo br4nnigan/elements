@@ -162,10 +162,11 @@
 	 ========================================================================== */
 
 
+
 .text-shadow(@left: 3, @top: 3, @blur: 3px, @color: rgba(0,0,0,0.3), @fallbackcolor: "#666666"){
 	text-shadow: unit(@left, px) unit(@top, px) @blur @color;
 	filter: dropshadow(color=@color, offx="@{left}px", offy="@{top}px");
-	filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=@left, OffY=@top, Color='@{fallbackcolor}', Positive='true');
+	filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=@left, OffY=@top,	Color='@{fallbackcolor}', Positive='true');
 	-ms-filter: %(~"progid:DXImageTransform.Microsoft.dropshadow(OffX=@{left}, OffY=@{top}, Color='@{fallbackcolor}', Positive='true')");
 }
 
@@ -264,10 +265,10 @@
 @o:"";
 @ms: "";
 .prefixes(@vendor: false) when (@vendor = true){
-	@webkit: -webkit-;
-	@moz: -moz-;
-	@o: -o-;
-	@ms: -ms-;
+  @webkit: -webkit-;
+  @moz: -moz-;
+  @o: -o-;
+  @ms: -ms-;
 }
 
 .transition(@attribute: all, @ease: ease-out, @duration: 0.2s, @vendor: false){
@@ -294,38 +295,25 @@
 }
 
 .box-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1, @inset: '') {
-	-webkit-box-shadow: ~"@{inset}" @x-axis @y-axis @blur rgba(0,0,0,0.25);
-	-moz-box-shadow: ~"@{inset}" @x-axis @y-axis @blur rgba(0,0,0,0.25);
-	box-shadow: ~"@{inset}" @x-axis @y-axis @blur rgba(0,0,0,0.25);
+  -webkit-box-shadow: ~"@{inset}" @x-axis @y-axis @blur rgba(0,0,0,0.25);
+  -moz-box-shadow: ~"@{inset}" @x-axis @y-axis @blur rgba(0,0,0,0.25);
+  box-shadow: ~"@{inset}" @x-axis @y-axis @blur rgba(0,0,0,0.25);
 }
 .drop-shadow(@arguments){
 	.box-shadow(@arguments);
 }
 
-.flex-grow(@value){
-	-webkit-box-flex: @value;
-	-webkit-flex-grow: @value;
-	-ms-flex-positive: @value;
-	flex-grow: @value;
-}
-.flex-shrink(@value){
-	-webkit-flex-shrink: @value;
-	-ms-flex-negative: @value;
-	flex-shrink: @value;
-}
-.flex{
-	display: -webkit-box;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-}
 .flex-align-items( @value ){
 	-webkit-box-align: @value;
 	-webkit-align-items: @value;
 	-ms-flex-align: @value;
 	-ms-grid-row-align: @value;
 	align-items: @value;
+}
+.flex-basis( @value ){
+	-webkit-flex-basis: @value;
+	-ms-flex-preferred-size: @value;
+	flex-basis: @value;
 }
 .flex-justify-content( @value ){
 	-webkit-box-pack: @value;
@@ -334,11 +322,45 @@
 	-ms-flex-pack: @value;
 	justify-content: @value;
 }
+.flex-justify-content( @value ) when ( @value = space-between ){
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+.flex-justify-content( @value ) when ( @value = center ){
+ -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+.flex-justify-content( @value ) when ( @value = space-around ){
+  -webkit-justify-content: space-around;
+        -ms-flex-pack: distribute;
+            justify-content: space-around;
+}
+.flex-justify-content( @value ) when ( @value = flex-end ){
+ -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+}
+.flex-justify-content( @value ) when ( @value = flex-start ){
+  -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+}
 .flex-align-content( @value ){
 	-webkit-align-content: @value;
 	-ms-align-content: @value;
 	-ms-flex-line-pack: @value;
 	align-content: @value;
+}
+.flex-wrap(@value){
+	-webkit-flex-wrap: @value;
+	    -ms-flex-wrap: @value;
+	        flex-wrap: @value;
 }
 .flex-flow(@value){
 	-webkit-flex-flow: @value;
@@ -369,35 +391,62 @@
 
 
 .animation-name( @value ){
+
 	-webkit-animation-name: @value;
 	-ms-animation-name: @value;
 	animation-name: @value;
 }
+
 .animation-duration( @value ){
+
 	-webkit-animation-duration: @value;
 	-ms-animation-duration: @value;
 	animation-duration: @value;
 }
 .animation-fill-mode( @value ){
+
 	-webkit-animation-fill-mode: @value;
 	-ms-animation-fill-mode: @value;
 	animation-fill-mode: @value;
+
 }
 .animation-delay( @value ){
+
 	-webkit-animation-delay: @value;
 	-ms-animation-delay: @value;
 	animation-delay: @value;
 }
+
+
 .animation(@arguments ){
-	 -webkit-animation  : @arguments;
-	 animation  : @arguments;
+   -webkit-animation  : @arguments;
+   animation  : @arguments;
 }
+
 .animation-iteration-count( @value ){
-	 -webkit-animation-iteration-count  : @value;
-	 animation-iteration-count  : @value;
+   -webkit-animation-iteration-count  : @value;
+   animation-iteration-count  : @value;
 }
 
 
+.flex-grow(@value){
+	-webkit-box-flex: @value;
+	-webkit-flex-grow: @value;
+	-ms-flex-positive: @value;
+	flex-grow: @value;
+}
+.flex-shrink(@value){
+	-webkit-flex-shrink: @value;
+	-ms-flex-negative: @value;
+	flex-shrink: @value;
+}
+.flex{
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
 .background-color(@color, @opacity : 1) {
 	background-color: rgba(red(@color), green(@color), blue(@color), @opacity);
 }
@@ -406,9 +455,8 @@
 	color: rgba(red(@color), green(@color), blue(@color), @opacity);
 }
 
-
 .hyphens(@value: auto){
-
+	/* Silbentrennung */
 	-webkit-hyphens: @value;
 	-moz-hyphens: @value;
 	-ms-hyphens: @value;
