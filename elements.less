@@ -389,3 +389,32 @@
 }
 
 
+.grid(@columns){
+	line-height: 0;
+	text-align: justify;
+	>*{
+		line-height: initial;
+		vertical-align: top;
+		display: inline-block;
+	}
+	.justifyEnd;
+}
+.grid(@columns: 0, @allocatableSpace: 95%) when (@columns > 0) {
+
+	.grid(0);
+	>*{
+		width: @allocatableSpace / @columns;
+	}
+	.justifyEnd;
+}
+
+.justifyEnd{
+
+	&:after{
+		display: inline-block;
+		content: "";
+		width: 100%;
+	}
+}
+
+
