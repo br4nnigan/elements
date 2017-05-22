@@ -267,12 +267,17 @@
 	-ms-flex-negative: @value;
 	flex-shrink: @value;
 }
-.flex{
+.display-flex{
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
+}
+.flex(@value){
+    -webkit-box-flex: @value;
+    -ms-flex: @value;
+        flex: @value;
 }
 .flex-align-items( @value ){
 	-webkit-box-align: @value;
